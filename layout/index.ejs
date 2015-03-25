@@ -1,7 +1,7 @@
 <% page.posts.each(function(item){ %>
 <article class="post container">
     <div class="jumbotron">
-        <h1><a href="<%- config.root %> <%- item.path %>" title="<%- item.title %>"><%- item.title %></a></h1>
+        <h1><a href="<%- config.root %><%- item.path %>" title="<%- item.title %>"><%- item.title %></a></h1>
 
         <% if(item.description){ %>
         <p><%- item.description %></p>
