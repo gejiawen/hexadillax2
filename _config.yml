@@ -6,7 +6,7 @@ menu:
   关于: { id: curriculumvitae, url: /curriculumvitae }
   链接: { id: links, url: /links }
 
-github: YOUR_GITHUB_NAME
+github: gejiawen
 
 background-root: /images/background/
 background: [ 1.jpg, 2.jpg, 3.jpg ]
@@ -15,7 +15,7 @@ avatar: /images/avatar.gif
 
 #### Comment
 duoshuo: 
-  short_name: YOUR_DUOSHUO_SHORT_NAME    ## duoshuo short name.
+  short_name: gejiawen-blog    ## duoshuo short name.
                                          ## refer to http://dev.duoshuo.com/docs/501e6ce1cff715f71800000d
 
-rss: YOUR_RSS_ADDRESS                    ## if any...
+rss: /atom.xml                    ## if any...
