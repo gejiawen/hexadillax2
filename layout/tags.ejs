@@ -7,23 +7,26 @@ page.tag = ' ';
         <div class="col-xs-3 well">
             <div class="archive-title" >
                 <h2 class="tag-icon">标签</h2>
-                <% site.tags.sort('name').each(function(item){ %>
-                <a data-src="<%- config.root %><%- item.path %>" href="#<%= item.name %>" title="<%= item.name %>"><%= item.name %><sup><%= item.posts.length %></sup></a>
-                <% }); %>
+                <ul class="archive-list">
+                    <% site.tags.sort('name').each(function(item){ %>
+                    <li><a data-src="<%- config.root %><%- item.path %>" href="#<%= item.name %>" title="<%= item.name %>"><%= item.name %><sup><%= item.posts.length %></sup></a></li>
+                    <% }); %>
+                </ul>
+
             </div>
         </div>
-        
+
         <div class="all-list-box">
         </div>
     </div>
 </div>
-    
+
 <script>
 $(function() {
     var box = $('.all-list-box');
     var first = $('.archive-title a:first-of-type');
     var list = $('.archive-title a');
-    
+
     box.load(first.attr('data-src').toString() + ' #tag-list-body');
     first.addClass('currentTag');
     list.each(function() {

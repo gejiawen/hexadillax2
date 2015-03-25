@@ -2,8 +2,12 @@
     <div id="bottom-tip">
         <%= config.title %><% if(config.subtitle) { %> —— <small><%= config.subtitle %></small><% } %>
     </div>
-        <small>该博客由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动，搭载 <a href="https://github.com/XadillaX/hexadillax" target="_blank">Hexadillax</a> 主题</small><br />
-        <small>&copy; 2014 XadillaX</small>
+        <small>该博客由 <a href="https://hexo.io/" target="_blank">Hexo</a> 强力驱动，搭载 <a href="https://github.com/gejiawen/hexadillax2" target="_blank">Hexadillax2</a> 主题</small><br />
+        <small>
+            &copy; <%= new Date().getFullYear() %> <a href="<%- config.url %>" target="_blank"><%- config.author %></a>
+            &nbsp;&nbsp;<img src="<%- theme.avatar_footer %>" class="img-circle index-post-avatar" />
+        </small>
     </footer>
+    <%- partial('_partial/tongji') %>
 </body>
 </html>

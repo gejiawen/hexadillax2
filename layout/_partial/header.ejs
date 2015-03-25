@@ -4,7 +4,7 @@
 // Some pretreatment here... //
 //                           //
 ///////////////////////////////
-    
+
 // The title...
 var title = page.title;
 if(is_archive()) {
@@ -62,7 +62,7 @@ if(is_archive()) {
     <script src="<%- config.root %>js/jquery.backstretch.min.js"></script>
     <script src="<%- config.root %>bootstrap/js/bootstrap.min.js"></script>
     <script src="<%- config.root %>js/headroom.min.js"></script>
-    <script src="<%- config.root %>js/jquery.headroom.min.js"></script> 
+    <script src="<%- config.root %>js/jquery.headroom.min.js"></script>
     <script src="<%- config.root %>js/common.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -86,30 +86,36 @@ if(is_archive()) {
             </div>
 
             <div role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
-                <% if(config.subtitle) { %><p class="navbar-text pull-right"><%= config.subtitle %></p><% } %>
+                <% if(config.subtitle) { %>
+                <ul class="nav navbar-nav pull-right">
+                    <li><img style="top: 9px" src="<%- theme.avatar_footer %>" class="img-circle index-post-avatar" /></li>
+                    <li><a class="max-width max-w300" title="<%= config.subtitle %>" href="<%- config.root %>feelings"><%= config.subtitle %></a></li>
+                </ul>
+                <% } %>
 
                 <ul class="nav navbar-nav">
                     <% for(var key in theme.menu) { %>
                     <li id="nav-<%- theme.menu[key]['id'] %>"><a href="<%- theme.menu[key]['url'] %>"><%= key %></a></li>
                     <% } %>
-                    
+
                     <% if(theme.github) { %><li><a href="https://github.com/<%- theme.github %>" target="_blank">GitHub</a></li><% } %>
+                    <% if(theme.rss) { %><li><a href="<%- config.root %><%- theme.rss %>" target="_blank">Rss</a></li><% } %>
                 </ul>
             </div>
         </div>
     </nav>
-    
+
     <script>
     var backRoot = "<%- theme['background-root'] %>";
     var backArray = [ <% for(var i = 0; i < theme.background.length; i++) { %>"<%- theme.background[i] %>", <% } %> ];
     //console.log(backArray);
-        
+
     $(function() {
         // page-id...
         var pageId = "<%- page.path %>";
         pageId = pageId.substr(0, pageId.indexOf("/"));
         if(pageId === "") pageId = "index";
-        
+
         $("#nav-" + pageId).addClass("active");
     });
     </script>

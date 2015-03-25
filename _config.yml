@@ -1,21 +1,26 @@
 menu:
   首页: { id: index, url: / }
   归档: { id: archives, url: /archives }
-  标签: { id: tags, url: /tags }
   分类: { id: categories, url: /categories }
-  关于: { id: curriculumvitae, url: /curriculumvitae }
-  链接: { id: links, url: /links }
+  标签: { id: tags, url: /tags }
+  阅读: { id: reading, url: /reading }
+  实验室: {id: labs, url: /labs }
+  关于: { id: about, url: /about }
 
 github: gejiawen
 
-background-root: /images/background/
-background: [ 1.jpg, 2.jpg, 3.jpg ]
+background-root: /images/bg/
+background: [ 01.jpg, 02.jpg, 03.jpg, 04.jpg, 05.jpg, 06.jpg, 07.jpg, 08.jpg, 09.jpg, 10.jpg, 11.jpg, 12.jpg  ]
 
-avatar: /images/avatar.gif
+avatar: /images/avatar.jpg
+avatar_footer: /images/avatar_footer.gif
 
 #### Comment
-duoshuo: 
-  short_name: gejiawen-blog    ## duoshuo short name.
-                                         ## refer to http://dev.duoshuo.com/docs/501e6ce1cff715f71800000d
+duoshuo:
+  short_name: gejiawen-blog
 
-rss: /atom.xml                    ## if any...
+#### tongji
+baidu_tongji: true
+qq_tongji: true
+
+rss: atom.xml

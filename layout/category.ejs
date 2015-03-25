@@ -12,11 +12,11 @@ if(page.category) {
             <div class="archive-title" >
                 <h2 class="tag-icon"><%- page.category %></h2>
                 <div>
-                    <a href="<%- config.root %>categories"><< 返回标签列表</a> 
+                    <a href="<%- config.root %>categories"><< 返回标签列表</a>
                 </div>
             </div>
         </div>
-        
+
         <div class="col-xs-9" id="category-list-body">
             <% page.posts.each(function(item) { %>
             <article class="post">
@@ -31,15 +31,19 @@ if(page.category) {
                         <p><%= strip_html(item.content).replace(/^\s*/, '').replace(/\s*$/, '').substring(0, 140) %></p>
                     <% } %>
 
+                    <p class=" say-title">
+                        <%- partial('_partial/catetags', {item: item}) %>
+                    </p>
+
                     <p class="say-title">
                         —— <img src="<%- theme.avatar %>" class="img-circle index-post-avatar" />
                         <a href="<%- config.url %>" target="_blank" title="<%- config.author %>"><%- config.author %></a>
-                        于<%- item.date.format(config.date_format) %>自豪地<% if(item.tags && item.tags.length){ %>以 <%- list_tags(item.tags, { show_count: false, class: 'article-tag', style: ""}) %> <% } %>唠嗑
+                        于<%- item.date.format(config.date_format) %>创作
                     </p>
                 </div>
             </article>
             <% }); %>
-            
+
             <% if (page.total > 1){ %>
             <div class="pagination-div">
                 <div class="well">
@@ -52,7 +56,7 @@ if(page.category) {
             <% } %>
         </div>
     </div>
-        
+
     <div class="col-xs-19 all-list-box">
     </div>
 </div>

@@ -20,9 +20,9 @@ if(page.archive) {
     <div class="row">
         <div class="col-xs-2 well">
             <h2 class="<%= icon %>-icon"><%= title %></h2>
-            <%- list_archives() %>
+            <%- list_archives({format: 'YYYY年MM月'}) %>
         </div>
-        
+
         <div class="col-xs-10">
             <% page.posts.each(function(item) { %>
             <article class="post">
@@ -38,14 +38,18 @@ if(page.archive) {
                     <% } %>
 
                     <p class="say-title">
+                        <%- partial('_partial/catetags', {item: item}) %>
+                    </p>
+
+                    <p class="say-title">
                         —— <img src="<%- theme.avatar %>" class="img-circle index-post-avatar" />
                         <a href="<%- config.url %>" target="_blank" title="<%- config.author %>"><%- config.author %></a>
-                        于<%- item.date.format(config.date_format) %>自豪地<% if(item.tags && item.tags.length){ %>以 <%- list_tags(item.tags, { show_count: false, class: 'article-tag', style: ""}) %> <% } %>唠嗑
+                        于<%- item.date.format(config.date_format) %>创作
                     </p>
                 </div>
             </article>
             <% }); %>
-            
+
             <% if (page.total > 1){ %>
             <div class="pagination-div">
                 <div class="well">
