@@ -9,7 +9,7 @@ page.category = ' ';
                 <h2 class="category-icon">分类</h2>
                 <ul class="archive-list">
                     <% site.categories.sort('name').each(function(item){ %>
-                    <li><a data-src="<%- config.root %><%- item.path %>" href="#<%= item.name %>" title="<%= item.name %>"><%= item.name %><sup><%= item.posts.length %></sup></a></li>
+                    <li><a data-src="<%- config.root %><%- item.path %>" href="#<%= item.name %>" title="<%= item.name %>"><%= item.name %><sup class="sup-color"><%= item.posts.length %></sup></a></li>
                     <% }); %>
                 </ul>
 
