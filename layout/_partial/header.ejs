@@ -107,8 +107,7 @@ if(is_archive()) {
 
     <script>
     var backRoot = "<%- theme['background-root'] %>";
-    var backArray = [ <% for(var i = 0; i < theme.background.length; i++) { %>"<%- theme.background[i] %>", <% } %> ];
-    //console.log(backArray);
+    var bgImageQ = "<%- theme['background-length'] %>";
 
     $(function() {
         // page-id...

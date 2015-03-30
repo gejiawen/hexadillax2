@@ -3,11 +3,9 @@ function random(max) {
 }
 
 $(function() {
-    var idx = random(backArray.length - 1);
-    //var idx = backArray.length - 1;
-    $.backstretch(backRoot + backArray[idx]);
-    //console.log("/images/background/" + backArray[idx]);
-    
+    $.backstretch(backRoot + random(parseInt(bgImageQ) - 1) + '.jpg');
+    //console.log(backRoot + random(parseInt(bgImageQ) - 1) + '.jpg');
+
     $("nav[role=banner]").headroom({
         offset  : 10,
         onNotTop: function() {
@@ -23,7 +21,7 @@ $(function() {
             $("nav[role=banner]").stop().animate({ top: "-50px" });
         }
     });
-    
+
     $(".post-body p").each(function() {
         if($(this).find("img").length) {
             $(this).css("text-align", "center");
