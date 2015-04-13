@@ -22,6 +22,6 @@ duoshuo:
 
 #### tongji
 baidu_tongji: true
-qq_tongji: true
+qq_tongji: false
 
 rss: atom.xml
