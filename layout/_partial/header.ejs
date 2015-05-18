@@ -88,8 +88,9 @@ if(is_archive()) {
             <div role="navigation" class="collapse navbar-collapse bs-navbar-collapse">
                 <% if(config.subtitle) { %>
                 <ul class="nav navbar-nav pull-right">
-                    <li><img style="top: 9px" src="<%- theme.avatar %>" class="img-circle index-post-avatar" /></li>
-                    <li><a class="max-width max-w300" title="<%= config.subtitle %>" href="<%- config.root %>feelings"><%= config.subtitle %></a></li>
+                    <li>
+                        <a class="max-width max-w300" title="<%= config.subtitle %>" href="<%- config.root %>feelings"><%= config.subtitle %></a>
+                    </li>
                 </ul>
                 <% } %>
 
