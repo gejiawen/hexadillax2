@@ -32,7 +32,7 @@ $(function() {
 
     $('#nav-search input').on('keyup', function (ev) {
         if (ev.keyCode === 13) {
-            var keyworks = $(this).val();
+            var keyworks = $.trim($(this).val());
             keywords = keyworks.split(' ');
             window.location = '/search/?keywords=' + keywords.join(',');
         }
