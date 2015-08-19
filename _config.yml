@@ -4,10 +4,14 @@ menu:
   分类: { id: categories, url: /categories }
   标签: { id: tags, url: /tags }
   阅读: { id: reading, url: /reading }
-  实验室: {id: labs, url: /labs }
+  实验室: { id: labs, url: /labs }
   关于: { id: about, url: /about }
 
 github: gejiawen
+rss: atom.xml
+search:
+  id: search
+  url: /search
 
 background-root: http://7xkwt1.com1.z0.glb.clouddn.com/background-
 background-length: 74
@@ -23,5 +27,3 @@ duoshuo:
 #### tongji
 baidu_tongji: true
 qq_tongji: false
-
-rss: atom.xml

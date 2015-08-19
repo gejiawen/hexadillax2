@@ -1,0 +1,124 @@
+<article class="post search container">
+    <div class="well post-body first-post last-post">
+        <h1><%- page.title %></h1>
+
+        <div class="search-keywords">
+            <span>检索关键字：</span>
+            <div class="keywords-list">
+
+            </div>
+        </div>
+
+        <div class="post-body-inner search-result">
+            <!--<article>-->
+                <!--<h1><a href="">通读Cheerio文档</a></h1>-->
+                <!--<div class="catetags">-->
+                    <!--Tags: <span></span>-->
+                <!--</div>-->
+                <!--<div class="">-->
+
+                <!--</div>-->
+            <!--</article>-->
+        </div>
+    </div>
+</article>
+
+<script src="http://apps.bdimg.com/libs/underscore.js/1.7.0/underscore-min.js"></script>
+<script>
+    var data = [];
+    var rets = [];
+
+    $.ajax({
+        url: '/atom.xml',
+        success: function (dom) {
+            entries = $(dom).find('entry');
+
+            _.each(entries, function (e) {
+                data.push({
+                    id: $(e).find('id').text(),
+                    href: $(e).find('link').attr('href'),
+                    title: $(e).find('title').text(),
+                    published: $(e).find('published').text(),
+                    updated: $(e).find('updated').text(),
+                    tags: (function () {
+                        var catetags = $(e).find('category');
+                        catetags = catetags.splice(0, catetags.length - 1);
+                        return _.map(catetags, function(v) {
+                            return {
+                                tag: $(v).attr('term'),
+                                href: $(v).attr('scheme')
+                            };
+                        });
+                    })(),
+                    category: (function () {
+                        var catetags = $(e).find('category');
+                        catetags = catetags.splice(catetags.length - 1);
+                        return _.map(catetags, function(v) {
+                            return {
+                                category: $(v).attr('term'),
+                                href: $(v).attr('scheme')
+                            };
+                        })[0];
+                    })()
+                });
+            });
+
+            // TODO scan the keywords
+            _.each(data, function (v) {
+                var pushed = false;
+                _.each(keywords, function (keyword) {
+                    if (_scanKeywords(v, keyword) && !pushed) {
+                        rets.push(v);
+                        pushed = true;
+                    }
+                })
+            });
+
+            var retsTemplate = '';
+            if (!rets.length) {
+                retsTemplate += '<div class="no-result">很遗憾，博主尚未涉猎' + keywordsTemplate + '方面的内容哦！</div>'
+            } else {
+                _.each(rets, function (ret, i) {
+                    retsTemplate += [
+                        '<article>',
+                            '<h3><a href=' + ret.href + ' target="_blank">' + ++i + '. ' + ret.title + '</a></h3>',
+                            '<div class="published">创作时间：' + ret.published.slice(0, 10) + '</div>',
+                        '</article>'
+                    ].join('');
+                });
+            }
+
+            $('.search-result').html(retsTemplate);
+        }
+    });
+
+    var query = window.location.search;
+    var keywords = query.split('=')[1].split(',');
+    _.each(keywords, function(keyword, i) {
+        keywords[i] = decodeURIComponent(keyword);
+    });
+    var keywordsTemplate = '';
+
+    _.each(keywords, function(keyword) {
+        keywordsTemplate += '<span class="keywords">' + keyword + '</span>';
+    });
+    $('.keywords-list').html(keywordsTemplate);
+
+    $('#nav-search input').val(keywords.join(' '));
+
+    function _scanKeywords(obj, keyword) {
+        if (obj.title.toLowerCase().indexOf(keyword) !== -1) {
+            return true;
+        }
+        if (obj.category.category.toLowerCase().indexOf(keyword) !== -1) {
+            return true;
+        }
+        for (var i = 0; i < obj.tags.length; i++) {
+            if (obj.tags[i].tag.toLowerCase().indexOf(keyword) !== -1) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+</script>
