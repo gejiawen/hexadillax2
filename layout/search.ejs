@@ -59,6 +59,14 @@
                                 href: $(v).attr('scheme')
                             };
                         })[0];
+                    })(),
+                    summary: (function () {
+                        var summary = $(e).find('summary').text();
+                        return summary;
+                    })(),
+                    content: (function () {
+                        var content = $(e).find('content').text();
+                        return content;
                     })()
                 });
             });
@@ -76,14 +84,23 @@
             var retsTemplate = '';
             if (!rets.length) {
                 retsTemplate += '<div class="no-result">很遗憾，博主尚未涉猎' + keywordsTemplate + '方面的内容哦！</div>'
+                retsTemplate += '<div class="no-result">你可以尝试组合其他关联的关键字来进行搜索！</div>'
             } else {
                 _.each(rets, function (ret, i) {
                     retsTemplate += [
                         '<article>',
                             '<h3><a href=' + ret.href + ' target="_blank">' + ++i + '. ' + ret.title + '</a></h3>',
                             '<div class="published">创作时间：' + ret.published.slice(0, 10) + '</div>',
-                        '</article>'
+                            '<div class="classify">',
+                            '<span class="category">Category: <a href="' + ret.category.href + '">' + ret.category.category + '</a></span>'
                     ].join('');
+
+                    retsTemplate += '<span class="tags">Tags: '
+                    _.each(ret.tags, function (tag, i) {
+                        retsTemplate += '<a href=" + tag.href + ">' + tag.tag;
+                    })
+
+                    retsTemplate += '</span></div></article>';
                 });
             }
 
@@ -106,14 +123,15 @@
     $('#nav-search input').val(keywords.join(' '));
 
     function _scanKeywords(obj, keyword) {
-        if (obj.title.toLowerCase().indexOf(keyword) !== -1) {
+        var reg = new RegExp(keyword, 'g');
+        if (reg.test(obj.title.toLowerCase())) {
             return true;
         }
-        if (obj.category.category.toLowerCase().indexOf(keyword) !== -1) {
+        if (reg.test(obj.category.category.toLowerCase())) {
             return true;
         }
         for (var i = 0; i < obj.tags.length; i++) {
-            if (obj.tags[i].tag.toLowerCase().indexOf(keyword) !== -1) {
+            if (reg.test(obj.tags[i].tag.toLowerCase())) {
                 return true;
             }
         }

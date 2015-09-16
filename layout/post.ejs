@@ -5,19 +5,22 @@
         <div class="time-info">
             <%- partial('_partial/catetags', {item: page}) %>
             &nbsp;&nbsp;
-            发表于: <time datetime="<%= date_xml(page.date) %>"
+            发表: <time datetime="<%= date_xml(page.date) %>"
                        itemprop="datePublished"><%= page.date.format(config.date_format) %></time>
             <% if (page.updated!=null) { %>
-            更新于: <time datetime="<%= date_xml(page.updated) %>"
+            更新: <time datetime="<%= date_xml(page.updated) %>"
                        itemprop="dateModified"><%= page.updated.format(config.date_format) %></time>
             <% } %>
         </div>
 
         <div class="post-body-inner">
-            <div id="toc" class="toc-article well">
-                <strong class="toc-title">大纲</strong>
-                <%- toc(page.content) %>
-            </div>
+            <% if (toc(page.content) !== '') { %>
+                <div id="toc" class="toc-article well">
+                    <strong class="toc-title">大纲</strong>
+                    <%- toc(page.content) %>
+                </div>
+            <% } %>
+
             <%- page.content %>
 
             <%- partial('_partial/post-info') %>
