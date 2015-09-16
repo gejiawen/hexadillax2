@@ -111,8 +111,10 @@ if(is_archive()) {
     </nav>
 
     <script>
-    var backRoot = "<%- theme['background-root'] %>";
-    var bgImageQ = "<%- theme['background-length'] %>";
+    var bgRoot = "<%- theme.background.root %>";
+    var bgLength = "<%- theme.background.length %>";
+    var bgRandom = <%- theme.background.random %>;
+    var bgImage = "<%- theme.background.image %>";
 
     $(function() {
         // page-id...

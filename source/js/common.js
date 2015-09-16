@@ -2,14 +2,12 @@ function random(max) {
     return Math.floor(Math.random() * (max + 1));
 }
 
-function haveTOC(content) {
-    var headings = $(content).find('h1, h2, h3, h4, h5, h6');
-    return !!headings.length;
-}
-
 $(function() {
-    $.backstretch(backRoot + random(parseInt(bgImageQ) - 1) + '.jpg');
-    //console.log(backRoot + random(parseInt(bgImageQ) - 1) + '.jpg');
+    if (bgRandom) {
+        $.backstretch(bgRoot + random(parseInt(bgLength) - 1) + '.jpg');
+    } else {
+        $.backstretch(bgImage);
+    }
 
     $("nav[role=banner]").headroom({
         offset  : 10,
