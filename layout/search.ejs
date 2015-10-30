@@ -28,86 +28,6 @@
     var data = [];
     var rets = [];
 
-    $.ajax({
-        url: '/atom.xml',
-        success: function (dom) {
-            entries = $(dom).find('entry');
-
-            _.each(entries, function (e) {
-                data.push({
-                    id: $(e).find('id').text(),
-                    href: $(e).find('link').attr('href'),
-                    title: $(e).find('title').text(),
-                    published: $(e).find('published').text(),
-                    updated: $(e).find('updated').text(),
-                    tags: (function () {
-                        var catetags = $(e).find('category');
-                        catetags = catetags.splice(0, catetags.length - 1);
-                        return _.map(catetags, function(v) {
-                            return {
-                                tag: $(v).attr('term'),
-                                href: $(v).attr('scheme')
-                            };
-                        });
-                    })(),
-                    category: (function () {
-                        var catetags = $(e).find('category');
-                        catetags = catetags.splice(catetags.length - 1);
-                        return _.map(catetags, function(v) {
-                            return {
-                                category: $(v).attr('term'),
-                                href: $(v).attr('scheme')
-                            };
-                        })[0];
-                    })(),
-                    summary: (function () {
-                        var summary = $(e).find('summary').text();
-                        return summary;
-                    })(),
-                    content: (function () {
-                        var content = $(e).find('content').text();
-                        return content;
-                    })()
-                });
-            });
-
-            _.each(data, function (v) {
-                var pushed = false;
-                _.each(keywords, function (keyword) {
-                    if (_scanKeywords(v, keyword) && !pushed) {
-                        rets.push(v);
-                        pushed = true;
-                    }
-                })
-            });
-
-            var retsTemplate = '';
-            if (!rets.length) {
-                retsTemplate += '<div class="no-result">很遗憾，博主尚未涉猎' + keywordsTemplate + '方面的内容哦！</div>'
-                retsTemplate += '<div class="no-result">你可以尝试组合其他关联的关键字来进行搜索！</div>'
-            } else {
-                _.each(rets, function (ret, i) {
-                    retsTemplate += [
-                        '<article>',
-                            '<h3><a href=' + ret.href + ' target="_blank">' + ++i + '. ' + ret.title + '</a></h3>',
-                            '<div class="published">创作时间：' + ret.published.slice(0, 10) + '</div>',
-                            '<div class="classify">',
-                            '<span class="category">Category: <a href="' + ret.category.href + '">' + ret.category.category + '</a></span>'
-                    ].join('');
-
-                    retsTemplate += '<span class="tags">Tags: '
-                    _.each(ret.tags, function (tag, i) {
-                        retsTemplate += '<a href=" + tag.href + ">' + tag.tag;
-                    })
-
-                    retsTemplate += '</span></div></article>';
-                });
-            }
-
-            $('.search-result').html(retsTemplate);
-        }
-    });
-
     var query = window.location.search;
     var keywords = query.split('=')[1].split(',');
     _.each(keywords, function(keyword, i) {
@@ -137,5 +57,112 @@
         }
         return false;
     }
+
+    function _getReset() {
+        _.each(data, function (v) {
+            var pushed = false;
+            _.each(keywords, function (keyword) {
+                if (_scanKeywords(v, keyword) && !pushed) {
+                    rets.push(v);
+                    pushed = true;
+                }
+            })
+        });
+
+        var retsTemplate = '';
+        if (!rets.length) {
+            retsTemplate += '<div class="no-result">很遗憾，博主尚未涉猎' + keywordsTemplate + '方面的内容哦！</div>'
+            retsTemplate += '<div class="no-result">你可以尝试组合其他关联的关键字来进行搜索！</div>'
+        } else {
+            _.each(rets, function (ret, i) {
+                retsTemplate += [
+                    '<article>',
+                    '<h3><a href=' + ret.href + ' target="_blank">' + ++i + '. ' + ret.title + '</a></h3>',
+                    '<div class="published">创作时间：' + ret.published.slice(0, 10) + '</div>',
+                    '<div class="classify">',
+                    '<span class="category">Category: <a href="' + ret.category.href + '">' + ret.category.category + '</a></span>'
+                ].join('');
+
+                retsTemplate += '<span class="tags">Tags: '
+                _.each(ret.tags, function (tag, i) {
+                    retsTemplate += '<a href=" + tag.href + ">' + tag.tag;
+                })
+
+                retsTemplate += '</span></div></article>';
+            });
+        }
+
+        $('.search-result').html(retsTemplate);
+    }
+
+    function _sendAjax() {
+        $.ajax({
+            url: '/atom.xml',
+            success: function (dom) {
+                entries = $(dom).find('entry');
+
+                _.each(entries, function (e) {
+                    data.push({
+                        id: $(e).find('id').text(),
+                        href: $(e).find('link').attr('href'),
+                        title: $(e).find('title').text(),
+                        published: $(e).find('published').text(),
+                        updated: $(e).find('updated').text(),
+                        tags: (function () {
+                            var catetags = $(e).find('category');
+                            catetags = catetags.splice(0, catetags.length - 1);
+                            return _.map(catetags, function(v) {
+                                return {
+                                    tag: $(v).attr('term'),
+                                    href: $(v).attr('scheme')
+                                };
+                            });
+                        })(),
+                        category: (function () {
+                            var catetags = $(e).find('category');
+                            catetags = catetags.splice(catetags.length - 1);
+                            return _.map(catetags, function(v) {
+                                return {
+                                    category: $(v).attr('term'),
+                                    href: $(v).attr('scheme')
+                                };
+                            })[0];
+                        })()
+                        /*summary: (function () {
+                         var summary = $(e).find('summary').text();
+                         return summary;
+                         })(),
+                         content: (function () {
+                         var content = $(e).find('content').text();
+                         return content;
+                         })()*/
+                    });
+                });
+
+                _getReset();
+            }
+        });
+    }
+
+    function _isLocalStorage() {
+        return !!window.localStorage;
+    }
+
+    function _setLocalStorage() {
+        localStorage.setItem('searchObject', JSON.stringify(data));
+    }
+
+    function _getLocalStorage() {
+        return JSON.parse(localStorage.getItem('searchObject'));
+    }
+
+    function _isLocalStorageExpire() {
+
+    }
+
+
+
+    // boot
+    _sendAjax();
 
 </script>
