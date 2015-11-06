@@ -7,12 +7,9 @@ page.tag = ' ';
         <div class="col-xs-3 well">
             <div class="archive-title" >
                 <h2 class="tag-icon">标签</h2>
-                <ul class="archive-list">
-                    <% site.tags.sort('name').each(function(item){ %>
-                    <li><a data-src="<%- config.root %><%- item.path %>" href="#<%= item.name %>" title="<%= item.name %>"><%= item.name %><sup class="sup-color"><%= item.posts.length %></sup></a></li>
-                    <% }); %>
-                </ul>
-
+                <% site.tags.sort('name').each(function(item){ %>
+                <a data-src="<%- config.root %><%- item.path %>" href="#<%= item.name %>" title="<%= item.name %>"><%= item.name %><sup class="sup-color"><%= item.posts.length %></sup></a>
+                <% }); %>
             </div>
         </div>
 
