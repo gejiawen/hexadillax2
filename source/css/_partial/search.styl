@@ -18,10 +18,15 @@
     .keywords
       margin 0 5px
   article
-    height 55px
+    padding 10px 0
     position relative
+    h3
+      a
+        word-wrap break-word
     .published
       position absolute
+      @media screen and (max-width: 736px)
+        display none
     .classify
       position absolute
       left 170px
@@ -30,4 +35,7 @@
       .tags
         a
           margin 0 5px
+      @media screen and (max-width: 736px)
+        display none
+
 
