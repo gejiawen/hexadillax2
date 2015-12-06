@@ -4,9 +4,8 @@
 
         <div class="search-keywords">
             <span>检索关键字：</span>
-            <div class="keywords-list">
-
-            </div>
+            <div class="keywords-list"></div>
+            <div style="margin-top: 10px">相关文章：<span class="post-number"></span>篇</div>
         </div>
 
         <div class="post-body-inner search-result">
@@ -30,17 +29,27 @@
 
     var query = window.location.search;
     var keywords = query.split('=')[1].split(',');
-    _.each(keywords, function(keyword, i) {
-        keywords[i] = decodeURIComponent(keyword);
-    });
-    var keywordsTemplate = '';
 
-    _.each(keywords, function(keyword) {
-        keywordsTemplate += '<span class="keywords">' + keyword + '</span>';
-    });
-    $('.keywords-list').html(keywordsTemplate);
+    if (!keywords[0]) {
+        $('.search-keywords').html('<div class="no-result">请给出检索关键字</div>');
+    } else {
+        _.each(keywords, function(keyword, i) {
+            keywords[i] = decodeURIComponent(keyword).toLowerCase();
+        });
+        var keywordsTemplate = '';
 
-    $('#nav-search input').val(keywords.join(' '));
+        _.each(keywords, function(keyword) {
+            keywordsTemplate += '<span class="keywords">' + keyword + '</span>';
+        });
+        $('.keywords-list').html(keywordsTemplate);
+
+        $('#nav-search input').val(keywords.join(' '));
+
+        // boot
+        _sendAjax();
+    }
+
+
 
     function _scanKeywords(obj, keyword) {
         var reg = new RegExp(keyword, 'g');
@@ -92,6 +101,7 @@
             });
         }
 
+        $('.post-number').html(rets.length);
         $('.search-result').html(retsTemplate);
     }
 
@@ -159,10 +169,5 @@
     function _isLocalStorageExpire() {
 
     }
-
-
-
-    // boot
-    _sendAjax();
 
 </script>
