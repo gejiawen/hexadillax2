@@ -4,7 +4,8 @@
 
         <div class="time-info">
             <%- partial('_partial/catetags', {item: page}) %>
-            &nbsp;&nbsp;
+        </div>
+        <div class="time-info">
             发表: <time datetime="<%= date_xml(page.date) %>"
                        itemprop="datePublished"><%= page.date.format(config.date_format) %></time>
             <% if (page.updated!=null) { %>
