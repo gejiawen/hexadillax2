@@ -38,3 +38,4 @@ disqus:
 #### tongji
 baidu_tongji: true
 qq_tongji: false
+google_tongji: true
