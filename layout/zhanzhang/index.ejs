@@ -1,7 +1,5 @@
-<% if (theme.zhanzhang.enable) { %>
-    <% if (theme.zhanzhang.baidu_zhanzhang) { %>
-        <%- partial('zhanzhang/baidu_zhanzhang.ejs') %>
-    <% } else if (theme.zhanzhang.360_zhanzhang) { %>
-        <%- partial('zhanzhang/360_zhanzhang.ejs') %>
-    <% } %>
+<% if (theme.zhanzhang.baidu_zhanzhang) { %>
+    <%- partial('baidu_zhanzhang') %>
+<% } else if (theme.zhanzhang.360_zhanzhang) { %>
+    <%- partial('360_zhanzhang') %>
 <% } %>
