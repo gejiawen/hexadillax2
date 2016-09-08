@@ -1,0 +1,5 @@
+<% if (theme.duoshuo.enable) { %>
+    <%- partial('comment/comment-duoshuo.ejs') %>
+<% } else if (theme.disqus.enable) { %>
+    <%- partial('comment/comment-disqus.ejs') %>
+<% } %>

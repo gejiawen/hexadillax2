@@ -14,11 +14,9 @@
 
         <div class="post-body-inner">
             <%- page.content %>
-            <div class="share">
-                分享本页：
-                <%- partial('_partial/baidu-share') %>
-            </div>
-            <%- partial('_partial/comment') %>
+
+            <%- partial('share/index') %>
+            <%- partial('comment/index') %>
         </div>
     </div>
 </article>

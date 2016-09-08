@@ -39,3 +39,12 @@ disqus:
 baidu_tongji: true
 qq_tongji: false
 google_tongji: true
+
+#### zhanzhang
+baidu_zhanzhang: true
+360_zhanzhang: true
+
+#### share
+share:
+    enable: true
+    baidu_share: true
