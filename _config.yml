@@ -41,8 +41,10 @@ qq_tongji: false
 google_tongji: true
 
 #### zhanzhang
-baidu_zhanzhang: true
-360_zhanzhang: true
+zhanzhang:
+    enable: true
+    baidu_zhanzhang: true
+    360_zhanzhang: true
 
 #### share
 share:

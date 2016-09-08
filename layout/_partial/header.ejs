@@ -72,11 +72,7 @@ if(is_archive()) {
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
-    <% if (theme.baidu_zhanzhang) { %>
-        <%- partial('_partial/baidu_zhanzhang.ejs') %>
-    <% } else if (theme.360_zhanzhang) { %>
-        <%- partial('_partial/360_zhanzhang.ejs') %>
-    <% } %>
+    <%- partial('zhanzhang/index') %>
 
 </head>
 <body>
