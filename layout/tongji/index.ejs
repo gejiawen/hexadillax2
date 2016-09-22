@@ -1,7 +1,9 @@
 <% if (theme.baidu_tongji) { %>
     <%- partial('baidu_tongji') %>
-<% } else if (theme.qq_tongji) { %>
+<% } %>
+<% if (theme.qq_tongji) { %>
     <%- partial('qq_tongji') %>
-<% } else if (theme.google_tongji) { %>
+<% } %>
+<% if (theme.google_tongji) { %>
     <%- partial('google_tongji') %>
 <% } %>

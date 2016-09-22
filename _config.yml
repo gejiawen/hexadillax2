@@ -37,7 +37,7 @@ disqus:
 
 #### tongji
 baidu_tongji: true
-qq_tongji: false
+qq_tongji: true
 google_tongji: true
 
 #### zhanzhang
