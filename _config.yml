@@ -44,5 +44,5 @@ zhanzhang_baidu: true
 zhanzhang_360: true
 
 #### share
-baidu_share: true
+baidu_share: false
 duoshuo_share: true
