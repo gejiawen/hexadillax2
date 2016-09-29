@@ -28,11 +28,11 @@ avatar: /images/avatar.jpg
 
 #### Comment
 duoshuo:
-  enable: false
+  enable: true
   enable_share: false
   short_name: gejiawen-blog
 disqus:
-  enable: true
+  enable: false
   short_name: gejiawen-blog
 
 #### tongji
@@ -47,6 +47,6 @@ zhanzhang:
     360_zhanzhang: true
 
 #### share
-share:
-    enable: true
-    baidu_share: true
+share: true
+baidu_share: true
+duoshuo_share: true

@@ -1,8 +1,10 @@
-<% if (theme.share.enable) { %>
+<% if (theme.share) { %>
     <div class="share">
         分享本页：
-        <% if (theme.share.baidu_share) { %>
+        <% if (theme.baidu_share) { %>
             <%- partial('baidu-share') %>
+        <% } else if (theme.duoshuo_share) { %>
+            <%- partial('duoshuo-share') %>
         <% } %>
     </div>
 <% } %>
