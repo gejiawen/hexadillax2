@@ -6,7 +6,7 @@ $(function() {
     if (bgRandom) {
         $.backstretch(bgRoot + random(parseInt(bgLength) - 1) + '.jpg');
     } else {
-        $.backstretch(bgImage);
+        $.backstretch(curImage);
     }
 
     $("nav[role=banner]").headroom({
