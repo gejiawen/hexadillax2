@@ -15,15 +15,11 @@ search:
   id: search
   url: /search
 
-background-root: http://gejiawen-blog.oss-cn-shanghai.aliyuncs.com/bg/
-background-length: 74
-
 background:
   root: http://gejiawen-blog.oss-cn-shanghai.aliyuncs.com/bg/
-  length: 74
+  length: 75
   random: true
-  current: 64.jpg
-
+  current: 74.jpg
 
 avatar: /images/avatar.jpg
 
