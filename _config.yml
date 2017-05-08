@@ -5,7 +5,7 @@ menu:
   标签: { id: tags, url: /tags/ }
 #  阅读: { id: reading, url: /reading }
 #  实验室: { id: labs, url: /labs }
-  拾遗: { id: pick, url: http://book.gejiawen.com/fucking-days-to-be-a-coder, target: _blank }
+  拾遗: { id: pick, url: http://book.gejiawen.com/fucking-days-to-be-a-coder/, target: _blank }
   关于: { id: about, url: /about/ }
 
 github: gejiawen
