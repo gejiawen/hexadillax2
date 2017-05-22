@@ -26,10 +26,10 @@ avatar: /images/avatar.jpg
 
 #### Comment
 duoshuo:
-  enable: true
+  enable: false
   short_name: gejiawen-blog
 disqus:
-  enable: false
+  enable: true
   short_name: gejiawen-blog
 
 #### tongji
