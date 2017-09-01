@@ -8,7 +8,7 @@
         <div class="time-info">
             发表: <time datetime="<%= date_xml(page.date) %>"
                        itemprop="datePublished"><%= page.date.format(config.date_format) %></time>
-            <% if (page.updated!=null) { %>
+            <% if (/*page.updated!=null*/ false ) { %>
             更新: <time datetime="<%= date_xml(page.updated) %>"
                        itemprop="dateModified"><%= page.updated.format(config.date_format) %></time>
             <% } %>
