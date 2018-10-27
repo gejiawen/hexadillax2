@@ -29,7 +29,7 @@ duoshuo:
   enable: false
   short_name: gejiawen-blog
 disqus:
-  enable: true
+  enable: false
   short_name: gejiawen-blog
 
 #### tongji
